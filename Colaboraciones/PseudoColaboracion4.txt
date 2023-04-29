@@ -1,0 +1,16 @@
+Crear Participacion
+
+seleccionarTripulaciones(idEquipo, idCarrera, fecha)
+
+1. Recuperar Equipo
+2. Recuperar Carrera
+
+3. Recuperar las Tripulaciones del Equipo -> getAll()
+4. Por cada Tripulacion hacer:
+	4.1. Comprobar si los tipos de legocar de los pilotos corresponden con
+	     el de la carrera
+	4.2. Si corresponden, crear un Participacion (fecha) -> Tripulacion
+	4.3. Añadir la Participacion en la Carrera
+
+
+
