@@ -6,19 +6,25 @@
 
 	<persistence-unit name="UnidadPersistencia"
 		transaction-type="RESOURCE_LOCAL">
-		<provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
 		<class>umu.pds.entidades.Campeonato</class>
 		<class>umu.pds.entidades.Carrera</class>
+		<class>umu.pds.entidades.CarreraFinal</class>
+		<class>umu.pds.entidades.Equipo</class>
+		<class>umu.pds.entidades.Participacion</class>
+		<class>umu.pds.entidades.Reserva</class>
+		<class>umu.pds.entidades.Tripulacion</class>
 
 		<properties>
 			<property name="javax.persistence.jdbc.driver"
-				value="com.mysql.jdbc.Driver" />
+				value="com.mysql.cj.jdbc.Driver" />
 			<property name="javax.persistence.jdbc.url"
 				value="jdbc:mysql://localhost:3306/pdsjpa?serverTimezone=CET" />
 			<property name="javax.persistence.jdbc.user" value="root" />
 			<property name="javax.persistence.jdbc.password"
 				value="1234" />
-			<property name="eclipselink.ddl-generation" value="create-tables"/>
+			<property name="hibernate.dialect"
+				value="org.hibernate.dialect.MySQL8Dialect" />
+			<property name="hibernate.hbm2ddl.auto" value="update" />
 		</properties>
 	</persistence-unit>
 </persistence>

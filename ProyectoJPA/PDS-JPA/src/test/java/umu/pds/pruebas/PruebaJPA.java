@@ -17,10 +17,6 @@ public class PruebaJPA {
 	
 	private EntityManagerFactory emf = Persistence.createEntityManagerFactory("UnidadPersistencia");
 
-	@Test
-	public void test() {
-		fail("Not yet implemented");
-	}
 	
 	@Test
 	public void crearCampeonato() {
@@ -32,14 +28,14 @@ public class PruebaJPA {
 		car1.setNumMaxAsistentes(250);
 		
 		Carrera car2 = new Carrera();
-		car1.setFecha(LocalDate.of(2023, 1, 10));
-		car1.setLocalizacion("Calle Inventada 2");
-		car1.setNumMaxAsistentes(300);
+		car2.setFecha(LocalDate.now());
+		car2.setLocalizacion("Calle Inventada 2");
+		car2.setNumMaxAsistentes(300);
 		
 		Carrera car3 = new Carrera();
-		car1.setFecha(LocalDate.of(2022, 3, 15));
-		car1.setLocalizacion("Calle Inventada 3");
-		car1.setNumMaxAsistentes(400);
+		car3.setFecha(LocalDate.now());
+		car3.setLocalizacion("Calle Inventada 3");
+		car3.setNumMaxAsistentes(400);
 		
 		campeonato.getCarreras().add(car1);
 		campeonato.getCarreras().add(car2);
