@@ -10,6 +10,8 @@ procesarResultado(idCarrera)
 	- Sumar los tiempos de cada vuelta
 	- Añadir la participacion al diccionario -> {par1: tiempo_total}
 - Ordenar de menor a mayor los tiempos -> {part_x: tiempo_total}
+
+//No entrar en el nivel de detalle de los puntos
 - Al primer elemento asginar +10 puntos
 - Al segundo elemento asignar +5 puntos
 - Al tercer elemento asignar +3 puntos
@@ -24,6 +26,8 @@ procesarResultado(idCarrera)
 	- Sumar puntuaciones de cada Calificacion
 	- Añadir al diccionario la Participacion con la suma
 - Ordenar de mayor a menor
+
+//No entrar en el nivel de detalle de los puntos
 - Asignar +3 puntos a los tres primeros elementos (partipaciones)
 
 - Actualizar la puntuacion de cada Equipo
