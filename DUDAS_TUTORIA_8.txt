@@ -1,0 +1,2 @@
+*Colabo 4*
+    + Tenemos que obtener un legocar random de un tipo determinado del repositorio.
