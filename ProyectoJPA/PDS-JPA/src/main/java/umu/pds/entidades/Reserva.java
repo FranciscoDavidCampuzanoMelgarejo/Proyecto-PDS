@@ -18,7 +18,7 @@ public class Reserva implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id")
-	private Integer id;
+	private long id;
 	
 	@Column(name = "fecha")
 	private LocalDate fecha;
@@ -26,18 +26,21 @@ public class Reserva implements Serializable {
 	@Column(name = "estado")
 	private Boolean estado;
 	
-	// Relacion 1 a 1 con Equipo
+	// Relacion unidireccional 1 a 1 con Equipo
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "id_equipo", referencedColumnName = "id")
+	private Equipo equipo;
 
 	public Reserva() {
 		super();
 	}
 
 	// Getters y Setters
-	public Integer getId() {
+	public long getId() {
 		return id;
 	}
 
-	public void setId(Integer id) {
+	public void setId(long id) {
 		this.id = id;
 	}
 

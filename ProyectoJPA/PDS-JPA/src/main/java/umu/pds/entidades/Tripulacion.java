@@ -2,8 +2,6 @@ package umu.pds.entidades;
 
 import java.io.Serializable;
 import java.time.LocalDate;
-import java.util.LinkedList;
-import java.util.List;
 
 import javax.persistence.*;
 
@@ -20,7 +18,7 @@ public class Tripulacion implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id")
-	private Integer id;
+	private long id;
 
 	@Column(name = "icono")
 	private String icono;
@@ -35,17 +33,19 @@ public class Tripulacion implements Serializable {
 	private LocalDate fechaRegistro;
 
 	// 1 a Muchos Piloto
-	// Muchos a 1 con Campeonato
-	@ManyToOne
-	@JoinColumn(name = "id_campeonato")
-	private Campeonato campeonato;
-	// Muchos a 1 con Equipo
-	@ManyToOne
-	@JoinColumn(name = "id_equipo")
-	private Equipo equipo;
-	// Uno a Muchos Participacion
-	@OneToMany(mappedBy = "tripulacion", cascade = CascadeType.ALL)
-	private List<Participacion> participaciones = new LinkedList<Participacion>();
+
+	// Relacion Uno a Uno bidireccional con Participacion
+	@OneToOne(mappedBy = "tripulacion", cascade = CascadeType.ALL)
+	private Participacion participacion;
+
+	// Relacion Uno a Uno unidireccional con Piloto
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "id_piloto1", referencedColumnName = "id")
+	private Piloto piloto1;
+
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "id_piloto2", referencedColumnName = "id")
+	private Piloto piloto2;
 
 	public Tripulacion() {
 		super();
@@ -53,11 +53,11 @@ public class Tripulacion implements Serializable {
 
 	// Getters y Setters
 
-	public Integer getId() {
+	public long getId() {
 		return id;
 	}
 
-	public void setId(Integer id) {
+	public void setId(long id) {
 		this.id = id;
 	}
 
@@ -93,34 +93,28 @@ public class Tripulacion implements Serializable {
 		this.fechaRegistro = fechaRegistro;
 	}
 
-	public Campeonato getCampeonato() {
-		return campeonato;
+	public Participacion getParticipacion() {
+		return participacion;
 	}
 
-	public void setCampeonato(Campeonato campeonato) {
-		this.campeonato = campeonato;
+	public void setParticipacion(Participacion participacion) {
+		this.participacion = participacion;
 	}
 
-	public Equipo getEquipo() {
-		return equipo;
+	public Piloto getPiloto1() {
+		return piloto1;
 	}
 
-	public void setEquipo(Equipo equipo) {
-		this.equipo = equipo;
+	public void setPiloto1(Piloto piloto1) {
+		this.piloto1 = piloto1;
 	}
 
-	public List<Participacion> getParticipaciones() {
-		return participaciones;
+	public Piloto getPiloto2() {
+		return piloto2;
 	}
 
-	public void setParticipaciones(List<Participacion> participaciones) {
-		this.participaciones = participaciones;
-	}
-
-	@Override
-	public String toString() {
-		// TODO Auto-generated method stub
-		return super.toString();
+	public void setPiloto2(Piloto piloto2) {
+		this.piloto2 = piloto2;
 	}
 
 }

@@ -3,6 +3,7 @@ package umu.pds.pruebas;
 import static org.junit.Assert.*;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -12,6 +13,7 @@ import org.junit.Test;
 
 import umu.pds.entidades.Campeonato;
 import umu.pds.entidades.Carrera;
+import umu.pds.entidades.Participacion;
 
 public class PruebaJPA {
 	
@@ -37,12 +39,26 @@ public class PruebaJPA {
 		car3.setLocalizacion("Calle Inventada 3");
 		car3.setNumMaxAsistentes(400);
 		
+		// Crear Participaciones
+		Participacion p1 = new Participacion();
+		p1.setFechaYHora(LocalDateTime.now());
+		p1.setTiempo(620);
+		p1.setPuntuacion(54);
+		
+		Participacion p2 = new Participacion();
+		p2.setFechaYHora(LocalDateTime.now());
+		p2.setTiempo(520);
+		p2.setPuntuacion(71);
+		
 		campeonato.getCarreras().add(car1);
 		campeonato.getCarreras().add(car2);
 		campeonato.getCarreras().add(car3);
 		car1.setCampeonato(campeonato);
 		car2.setCampeonato(campeonato);
 		car3.setCampeonato(campeonato);
+		car1.getParticipaciones().add(p1);
+		car2.getParticipaciones().add(p2);
+		
 		
 		EntityManager em = emf.createEntityManager();
 		try {

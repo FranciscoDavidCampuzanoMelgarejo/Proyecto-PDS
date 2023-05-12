@@ -18,27 +18,22 @@ public class Participacion implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id")
-	private Integer id;
+	private long id;
 
 	@Column(name = "fecha_hora")
 	private LocalDateTime fechaYHora;
 
 	@Column(name = "tiempo")
-	private Integer tiempo;
+	private long tiempo;
 
 	@Column(name = "puntuacion")
-	private Integer puntuacion;
+	private long puntuacion;
 
-	@Column(name = "vuelta")
-	private Integer vuelta;
 
-	// Relacion Muchos a 1 con Carrera
-	@ManyToOne
-	@JoinColumn(name = "id_carrera")
-	private Carrera carrera;
-	// Relacion Muchos a 1 con Tripulacion
-	@ManyToOne
-	@JoinColumn(name = "id_tripulacion")
+	
+	// Relacion 1 a 1 con Tripulacion
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "id_tripulacion", referencedColumnName = "id")
 	private Tripulacion tripulacion;
 
 	public Participacion() {
@@ -46,11 +41,11 @@ public class Participacion implements Serializable {
 	}
 
 	// Getters y Setters
-	public Integer getId() {
+	public long getId() {
 		return id;
 	}
 
-	public void setId(Integer id) {
+	public void setId(long id) {
 		this.id = id;
 	}
 
@@ -62,37 +57,22 @@ public class Participacion implements Serializable {
 		this.fechaYHora = fechaYHora;
 	}
 
-	public Integer getTiempo() {
+	public long getTiempo() {
 		return tiempo;
 	}
 
-	public void setTiempo(Integer tiempo) {
+	public void setTiempo(long tiempo) {
 		this.tiempo = tiempo;
 	}
 
-	public Integer getPuntuacion() {
+	public long getPuntuacion() {
 		return puntuacion;
 	}
 
-	public void setPuntuacion(Integer puntuacion) {
+	public void setPuntuacion(long puntuacion) {
 		this.puntuacion = puntuacion;
 	}
 
-	public Integer getVuelta() {
-		return vuelta;
-	}
-
-	public void setVuelta(Integer vuelta) {
-		this.vuelta = vuelta;
-	}
-
-	public Carrera getCarrera() {
-		return carrera;
-	}
-
-	public void setCarrera(Carrera carrera) {
-		this.carrera = carrera;
-	}
 
 	public Tripulacion getTripulacion() {
 		return tripulacion;
@@ -100,12 +80,6 @@ public class Participacion implements Serializable {
 
 	public void setTripulacion(Tripulacion tripulacion) {
 		this.tripulacion = tripulacion;
-	}
-
-	@Override
-	public String toString() {
-		return "Participacion [id=" + id + ", fechaYHora=" + fechaYHora + ", tiempo=" + tiempo + ", puntuacion="
-				+ puntuacion + ", vuelta=" + vuelta + ", carrera=" + carrera + ", tripulacion=" + tripulacion + "]";
 	}
 
 }

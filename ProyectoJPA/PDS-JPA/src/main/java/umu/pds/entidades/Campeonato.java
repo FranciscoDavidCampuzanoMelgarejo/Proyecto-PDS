@@ -9,21 +9,27 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "campeonato")
 public class Campeonato implements Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id")
-	private Integer id;
+	private long id;
 
 	@Column(name = "fecha")
 	private LocalDate fecha;
@@ -34,12 +40,21 @@ public class Campeonato implements Serializable {
 	// Campeonato relacion 1 a Muchos con Carrera
 	@OneToMany(mappedBy = "campeonato", cascade = { CascadeType.ALL })
 	private List<Carrera> carreras = new ArrayList<Carrera>();
+
 	// Campeonato relacion 1 a Muchos con Tripulacion
-	@OneToMany(mappedBy = "campeonato", cascade = { CascadeType.ALL })
+	@OneToMany(cascade = CascadeType.ALL)
+	@JoinColumn(name = "id_campeonato")
 	private List<Tripulacion> tripulaciones = new LinkedList<Tripulacion>();
+
 	// Campeonato realcion 1 a Muchos con Equipo
-	@OneToMany(mappedBy = "campeonato", cascade = { CascadeType.ALL })
+	@OneToMany(cascade = CascadeType.ALL)
+	@JoinColumn(name = "id_campeonato")
 	private List<Equipo> equipos = new LinkedList<Equipo>();
+
+	// Relacion 1 a 1 con CarreraFinal
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "id_carrera_final", referencedColumnName = "id")
+	private CarreraFinal carreraFinal;
 
 	// Constructores
 	public Campeonato() {
@@ -52,11 +67,11 @@ public class Campeonato implements Serializable {
 	}
 
 	// Getters y Setters
-	public Integer getId() {
+	public long getId() {
 		return id;
 	}
 
-	public void setId(Integer id) {
+	public void setId(long id) {
 		this.id = id;
 	}
 
@@ -100,10 +115,12 @@ public class Campeonato implements Serializable {
 		this.equipos = equipos;
 	}
 
-	// ToString
-	@Override
-	public String toString() {
-		return "Campeonato [id=" + id + ", fecha=" + fecha + ", estado=" + estado + "]";
+	public CarreraFinal getCarreraFinal() {
+		return carreraFinal;
+	}
+
+	public void setCarreraFinal(CarreraFinal carreraFinal) {
+		this.carreraFinal = carreraFinal;
 	}
 
 }

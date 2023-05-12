@@ -20,10 +20,15 @@ import javax.persistence.Table;
 @Table(name = "carrera")
 public class Carrera implements Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id")
-	private Integer id;
+	private long id;
 
 	@Column(name = "localizacion")
 	private String localizacion;
@@ -32,7 +37,7 @@ public class Carrera implements Serializable {
 	private LocalDate fecha;
 
 	@Column(name = "max_asistentes")
-	private Integer numMaxAsistentes;
+	private long numMaxAsistentes;
 
 	// Relacion Muchos a 1 con Campeoanto
 	@ManyToOne
@@ -40,16 +45,17 @@ public class Carrera implements Serializable {
 	private Campeonato campeonato;
 
 	// Relacion 1 a Muchos con Participacion
-	@OneToMany(mappedBy = "carrera", cascade = CascadeType.ALL)
+	@OneToMany(cascade = CascadeType.ALL)
+	@JoinColumn(name = "id_carrera")
 	private List<Participacion> participaciones = new LinkedList<Participacion>();
 
 	// Getters y Setters
 
-	public Integer getId() {
+	public long getId() {
 		return id;
 	}
 
-	public void setId(Integer id) {
+	public void setId(long id) {
 		this.id = id;
 	}
 
@@ -69,14 +75,15 @@ public class Carrera implements Serializable {
 		this.fecha = fecha;
 	}
 
-	public Integer getNumMaxAsistentes() {
+	public long getNumMaxAsistentes() {
 		return numMaxAsistentes;
 	}
 
-	public void setNumMaxAsistentes(Integer numMaxAsistentes) {
+	public void setNumMaxAsistentes(long numMaxAsistentes) {
 		this.numMaxAsistentes = numMaxAsistentes;
 	}
 
+	
 	public Campeonato getCampeonato() {
 		return campeonato;
 	}
@@ -84,6 +91,7 @@ public class Carrera implements Serializable {
 	public void setCampeonato(Campeonato campeonato) {
 		this.campeonato = campeonato;
 	}
+	
 
 	public List<Participacion> getParticipaciones() {
 		return participaciones;

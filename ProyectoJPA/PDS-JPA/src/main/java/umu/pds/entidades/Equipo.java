@@ -1,7 +1,7 @@
 package umu.pds.entidades;
 
 import java.io.Serializable;
-import java.util.LinkedList;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.*;
@@ -19,40 +19,33 @@ public class Equipo implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id")
-	private Integer id;
+	private long id;
 
 	@Column(name = "puntuacion")
-	private Integer puntuacion;
+	private long puntuacion;
 
-	// Relacion Muchos a Uno con Campeonato
-	@ManyToOne
-	@JoinColumn(name = "id_campeonato")
-	private Campeonato campeonato;
 	// Relacion 1 a Muchos con Tripulacion
-	@OneToMany(mappedBy = "equipo", cascade = CascadeType.ALL)
-	private List<Tripulacion> tripulaciones = new LinkedList<Tripulacion>();
-	// Relacion 1 a 1 con Reserva
-	@OneToOne
-	@JoinColumn(name = "id_reserva")
-	private Reserva reserva;
+	@OneToMany(cascade = CascadeType.ALL)
+	@JoinColumn(name = "id_equipo")
+	private List<Tripulacion> tripulaciones = new ArrayList<Tripulacion>(5);
 
 	public Equipo() {
 		super();
 	}
 
-	public Integer getId() {
+	public long getId() {
 		return id;
 	}
 
-	public void setId(Integer id) {
+	public void setId(long id) {
 		this.id = id;
 	}
 
-	public Integer getPuntuacion() {
+	public long getPuntuacion() {
 		return puntuacion;
 	}
 
-	public void setPuntuacion(Integer puntuacion) {
+	public void setPuntuacion(long puntuacion) {
 		this.puntuacion = puntuacion;
 	}
 
@@ -62,20 +55,6 @@ public class Equipo implements Serializable {
 
 	public void setTripulaciones(List<Tripulacion> tripulaciones) {
 		this.tripulaciones = tripulaciones;
-	}
-
-	public Reserva getReserva() {
-		return reserva;
-	}
-
-	public void setReserva(Reserva reserva) {
-		this.reserva = reserva;
-	}
-
-	@Override
-	public String toString() {
-		// TODO Auto-generated method stub
-		return super.toString();
 	}
 
 }
