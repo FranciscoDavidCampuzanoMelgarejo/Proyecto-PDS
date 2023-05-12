@@ -9,6 +9,8 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -34,8 +36,9 @@ public class Campeonato implements Serializable {
 	@Column(name = "fecha")
 	private LocalDate fecha;
 
+	@Enumerated(EnumType.STRING)
 	@Column(name = "estado")
-	private Boolean estado;
+	private Estado estado;
 
 	// Campeonato relacion 1 a Muchos con Carrera
 	@OneToMany(mappedBy = "campeonato", cascade = { CascadeType.ALL })
@@ -61,7 +64,7 @@ public class Campeonato implements Serializable {
 
 	}
 
-	public Campeonato(LocalDate fecha, Boolean estado) {
+	public Campeonato(LocalDate fecha, Estado estado) {
 		this.fecha = fecha;
 		this.estado = estado;
 	}
@@ -83,11 +86,11 @@ public class Campeonato implements Serializable {
 		this.fecha = fecha;
 	}
 
-	public Boolean getEstado() {
+	public Estado getEstado() {
 		return estado;
 	}
 
-	public void setEstado(Boolean estado) {
+	public void setEstado(Estado estado) {
 		this.estado = estado;
 	}
 

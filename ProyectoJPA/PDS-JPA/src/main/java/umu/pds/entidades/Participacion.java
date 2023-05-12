@@ -29,8 +29,6 @@ public class Participacion implements Serializable {
 	@Column(name = "puntuacion")
 	private long puntuacion;
 
-
-	
 	// Relacion 1 a 1 con Tripulacion
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "id_tripulacion", referencedColumnName = "id")
@@ -72,7 +70,6 @@ public class Participacion implements Serializable {
 	public void setPuntuacion(long puntuacion) {
 		this.puntuacion = puntuacion;
 	}
-
 
 	public Tripulacion getTripulacion() {
 		return tripulacion;

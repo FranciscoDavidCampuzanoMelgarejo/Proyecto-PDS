@@ -15,23 +15,22 @@ import javax.persistence.*;
 @DiscriminatorColumn(name = "tipo_piloto", discriminatorType = DiscriminatorType.STRING)
 public abstract class Piloto implements Serializable {
 
-	
 	private static final long serialVersionUID = 1L;
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id")
 	private long id;
-	
+
 	@Column(name = "nombre")
 	private String nombre;
-	
+
 	@Column(name = "fecha_nacimiento")
 	private LocalDate fechaNacimiento;
-	
+
 	@Column(name = "nickname")
 	private String nickname;
-	
+
 	@Column(name = "desempleado")
 	private Boolean desempleado;
 
@@ -39,9 +38,8 @@ public abstract class Piloto implements Serializable {
 		super();
 	}
 
-	
 	// Getters y Setters
-	
+
 	public long getId() {
 		return id;
 	}
@@ -81,7 +79,5 @@ public abstract class Piloto implements Serializable {
 	public void setDesempleado(Boolean desempleado) {
 		this.desempleado = desempleado;
 	}
-	
-	
-   
+
 }

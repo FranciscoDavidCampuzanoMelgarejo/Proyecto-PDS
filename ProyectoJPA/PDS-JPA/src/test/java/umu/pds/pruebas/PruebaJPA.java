@@ -13,6 +13,7 @@ import org.junit.Test;
 
 import umu.pds.entidades.Campeonato;
 import umu.pds.entidades.Carrera;
+import umu.pds.entidades.Estado;
 import umu.pds.entidades.Participacion;
 
 public class PruebaJPA {
@@ -22,7 +23,7 @@ public class PruebaJPA {
 	
 	@Test
 	public void crearCampeonato() {
-		Campeonato campeonato = new Campeonato(LocalDate.now(), true);
+		Campeonato campeonato = new Campeonato(LocalDate.now(), Estado.PENDIENTE);
 		
 		Carrera car1 = new Carrera();
 		car1.setFecha(LocalDate.now());

@@ -12,20 +12,21 @@ import javax.persistence.*;
 @Entity
 @Table(name = "reserva")
 public class Reserva implements Serializable {
-	
+
 	private static final long serialVersionUID = 1L;
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id")
 	private long id;
-	
+
 	@Column(name = "fecha")
 	private LocalDate fecha;
-	
+
 	@Column(name = "estado")
-	private Boolean estado;
-	
+	@Enumerated(EnumType.STRING)
+	private Estado estado;
+
 	// Relacion unidireccional 1 a 1 con Equipo
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "id_equipo", referencedColumnName = "id")
@@ -52,19 +53,12 @@ public class Reserva implements Serializable {
 		this.fecha = fecha;
 	}
 
-	public Boolean getEstado() {
+	public Estado getEstado() {
 		return estado;
 	}
 
-	public void setEstado(Boolean estado) {
+	public void setEstado(Estado estado) {
 		this.estado = estado;
 	}
 
-	@Override
-	public String toString() {
-		return "Reserva [id=" + id + ", fecha=" + fecha + ", estado=" + estado + "]";
-	}
-	
-	
-   
 }

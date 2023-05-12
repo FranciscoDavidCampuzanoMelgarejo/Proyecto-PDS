@@ -49,6 +49,10 @@ public class Carrera implements Serializable {
 	@JoinColumn(name = "id_carrera")
 	private List<Participacion> participaciones = new LinkedList<Participacion>();
 
+	public Carrera() {
+
+	}
+
 	// Getters y Setters
 
 	public long getId() {
@@ -83,7 +87,6 @@ public class Carrera implements Serializable {
 		this.numMaxAsistentes = numMaxAsistentes;
 	}
 
-	
 	public Campeonato getCampeonato() {
 		return campeonato;
 	}
@@ -91,7 +94,6 @@ public class Carrera implements Serializable {
 	public void setCampeonato(Campeonato campeonato) {
 		this.campeonato = campeonato;
 	}
-	
 
 	public List<Participacion> getParticipaciones() {
 		return participaciones;
@@ -99,15 +101,6 @@ public class Carrera implements Serializable {
 
 	public void setParticipaciones(List<Participacion> participaciones) {
 		this.participaciones = participaciones;
-	}
-
-	// ToString
-	@Override
-	public String toString() {
-		return "Carrera [id=" + id + ", localizacion=" + localizacion + ", fecha=" + fecha + ", numMaxAsistentes="
-				+ numMaxAsistentes + ", getId()=" + getId() + ", getLocalizacion()=" + getLocalizacion()
-				+ ", getFecha()=" + getFecha() + ", getNumMaxAsistentes()=" + getNumMaxAsistentes() + ", getClass()="
-				+ getClass() + ", hashCode()=" + hashCode() + ", toString()=" + super.toString() + "]";
 	}
 
 }
